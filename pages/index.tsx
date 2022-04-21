@@ -28,10 +28,9 @@ export async function getServerSideProps({ props }: any) {
 
 async function elasticData() {
   const url = `${process.env.NEXT_PUBLIC_ELASTIC_HOST}/api/elastic`
-  console.log(url)
 
-  // const response = await fetch(url)
-  // console.log("response: ", response)
+  const response = await fetch(url)
+  console.log("response: ", response)
 
   // const data = await response.json()
   // console.log("data: ", data)

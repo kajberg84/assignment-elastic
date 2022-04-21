@@ -6,18 +6,24 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import { connectToElasticsearch } from "../../components/elasticConnector"
 import { searchQuery } from "../../components/elasticQuery"
 
-export async function searchElastic(req: NextApiRequest, res: NextApiResponse) {
+async function searchElastic() {
   try {
+    console.log("inne i searchElastic")
     // returning elastic client
     const client = await connectToElasticsearch()
+    console.log(".......xxx.......")
 
     // query elastic
     const query = searchQuery()
+    console.log(query)
+    console.log(".......yyy.......")
 
     // search elastic with query
     const response = await client.search(query)
 
-    // console.log(response?.aggregations["0"].buckets)
+    console.log(response?.aggregations)
+    console.log("-------bbbbbbbbbb-----------")
+
     // console.log(response)
 
     // let results: any = []
@@ -27,7 +33,7 @@ export async function searchElastic(req: NextApiRequest, res: NextApiResponse) {
     //     popularity: bucket["1"].value,
     //   })
     // })
-    return response
+    return response?.aggregations
   } catch (error: any) {
     console.log(error)
     return res.status(error.statusCode || 500).json({ error: error.message })
@@ -39,6 +45,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   console.log("inne i elastic handler")
-  const data = await searchElastic()
-  res.status(200).json({ data })
+  const aggregations = await searchElastic()
+  res.status(200).json({ aggregations })
 }
