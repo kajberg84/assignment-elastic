@@ -4,6 +4,8 @@ import Image from "next/image"
 import { render } from "react-dom"
 import elastic from "./api/elastic"
 import searchElastic from "./api/elastic"
+import SampleLine from "../components/elasticChart"
+import React from "react"
 
 interface Props {
   data: []
@@ -12,13 +14,27 @@ interface Props {
 //get serversideprops
 export async function getServerSideProps({ props }: any) {
   try {
+    let xSampleData: any = []
+    let ySampleData: any = []
     console.log("get serverside props")
 
     const data = await elasticData()
-    // console.log("data recieved: ", data)
-    console.log("--------")
-    console.log(data)
-    return { props: { data } }
+
+    data.aggregations
+      .filter((item: any) => item["1"].value)
+      .forEach((item: any) => {
+        ySampleData.push(item["1"].value)
+        xSampleData.push(item.key_as_string.substring(0, 10))
+      })
+
+    return {
+      props: {
+        data: {
+          xSampleData,
+          ySampleData,
+        },
+      },
+    }
   } catch (error) {
     console.log(error)
     return {
@@ -36,14 +52,17 @@ async function elasticData() {
   return data
 }
 
+export default function Home({ data }: { data: any }) {
+  const [xData, setXData] = React.useState(data.xSampleData)
+  const [yData, setYData] = React.useState(data.ySampleData)
 
-export default function Home(props: Props) {
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
       <Head>
         <title>Elastic assignment</title>
       </Head>
       <h1>Elastic assignment</h1>
+      <SampleLine xData={xData} yData={yData} />
     </div>
   )
 }

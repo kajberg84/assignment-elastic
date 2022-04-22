@@ -1,10 +1,11 @@
-//@ts-nocheck
-
 import React from "react"
-
 import type { NextApiRequest, NextApiResponse } from "next"
 import { elasticSearchClient } from "../../components/elasticConnector"
 import { searchQuery } from "../../components/elasticQuery"
+
+// interface Aggre extends AggregationsAggregate {
+//   buckets: Object[]
+// }
 
 async function searchElastic() {
   try {
@@ -19,8 +20,14 @@ async function searchElastic() {
     // Searching with query
     const response = await client.search(query)
 
-    const allBuckets = []
-    response?.aggregations?.reldate_popu.buckets.forEach((item: any) => {
+    const allBuckets: any = []
+    const aggre: any = response.aggregations
+
+    console.log("----------------xxxx--------------------")
+    console.log(aggre)
+    console.log("----------------yyyyy--------------------")
+
+    aggre.reldate_popu.buckets.forEach((item: any) => {
       allBuckets.push(item)
     })
 
