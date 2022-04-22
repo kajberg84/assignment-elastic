@@ -6,7 +6,7 @@ import { Client } from "@elastic/elasticsearch"
  * @export
  * @return { Client }
  */
-export async function connectToElasticsearch() {
+export async function elasticSearchClient() {
   const FINGERPRINT = process.env.NEXT_PUBLIC_FINGERPRINT!
   const ELASTIC_USER_NAME = process.env.NEXT_PUBLIC_ELASTIC_USER_NAME!
   const ELASTIC_USER_PASSWORD = process.env.NEXT_PUBLIC_ELASTIC_USER_PASSWORD!

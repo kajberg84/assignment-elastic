@@ -15,7 +15,9 @@ export async function getServerSideProps({ props }: any) {
     console.log("get serverside props")
 
     const data = await elasticData()
-    console.log("index: ", data)
+    // console.log("data recieved: ", data)
+    console.log("--------")
+    console.log(data)
     return { props: { data } }
   } catch (error) {
     console.log(error)
@@ -23,20 +25,17 @@ export async function getServerSideProps({ props }: any) {
       notFound: true,
     }
   }
-  // use the data to render a apexChart
 }
 
 async function elasticData() {
-  const url = `${process.env.NEXT_PUBLIC_ELASTIC_HOST}/api/elastic`
+  const url = `${process.env.NEXT_PUBLIC_HOST}/api/elastic`
 
   const response = await fetch(url)
-  console.log("response: ", response)
 
-  // const data = await response.json()
-  // console.log("data: ", data)
-  // return data
-  return "data kossa"
+  const data = await response.json()
+  return data
 }
+
 
 export default function Home(props: Props) {
   return (

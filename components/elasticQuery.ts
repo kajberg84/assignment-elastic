@@ -3,7 +3,7 @@ export function searchQuery() {
     index: "movies",
     body: {
       aggs: {
-        "0": {
+        reldate_popu: {
           date_histogram: {
             field: "release_date",
             fixed_interval: "365d",
@@ -43,8 +43,8 @@ export function searchQuery() {
               range: {
                 release_date: {
                   format: "strict_date_optional_time",
-                  gte: "1940-02-22T23:00:00.000Z",
-                  lte: "2016-08-16T22:00:00.000Z",
+                  gte: "1922-04-22T08:24:54.456Z",
+                  lte: "2022-04-22T07:24:54.456Z",
                 },
               },
             },
