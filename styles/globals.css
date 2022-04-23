@@ -13,4 +13,13 @@ a {
 
 * {
   box-sizing: border-box;
+  text-align: center;
+}
+
+.main-head {
+  width: 100%;
+}
+
+.main-graph {
+  background-color: #fafafa;
 }
