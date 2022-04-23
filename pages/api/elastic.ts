@@ -23,10 +23,6 @@ async function searchElastic() {
     const allBuckets: any = []
     const aggre: any = response.aggregations
 
-    console.log("----------------xxxx--------------------")
-    console.log(aggre)
-    console.log("----------------yyyyy--------------------")
-
     aggre.reldate_popu.buckets.forEach((item: any) => {
       allBuckets.push(item)
     })
