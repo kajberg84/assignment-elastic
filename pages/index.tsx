@@ -15,6 +15,7 @@ export async function getServerSideProps({ props }: any) {
     const data = await elasticData()
 
     // Itterate over the data and get the year and average popularity
+    // Filter away the "null" values
     data.aggregations
       .filter((item: any) => item["1"].value)
       .forEach((item: any) => {
