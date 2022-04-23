@@ -64,9 +64,9 @@ export default function Home({ data }: { data: any }) {
   return (
     <div style={{ height: "100vh" }}>
       <Head>
-        <title>Average popularity</title>
+        <title>Elastic assignment</title>
       </Head>
-      <h1>Elastic assignment</h1>
+      <h1>Sum budget spent on movies 1925 - 2016</h1>
       <SimpleChart xData={xData} yData={yData} />
     </div>
   )

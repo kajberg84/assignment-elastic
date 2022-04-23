@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { elasticSearchClient } from "../../components/elasticConnector"
-import { searchQuery } from "../../components/elasticQuery"
+import { searchQuery, searchQuery2 } from "../../components/elasticQuery"
 /**
  * Function for getting the data from elastic search
  *
@@ -12,7 +12,7 @@ async function searchElastic() {
     const client = await elasticSearchClient()
 
     // Creating search query
-    const query: any = searchQuery()
+    const query: any = searchQuery2()
 
     // Searching with query
     const response = await client.search(query)

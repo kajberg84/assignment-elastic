@@ -21,7 +21,7 @@ const Chart = dynamic(() => import("react-apexcharts"), {
 export default function SimpleChart({ xData, yData }: Props) {
   const series = [
     {
-      name: "Average popularity", //will be displayed on the y-axis
+      name: "Sum budget(USD)", //will be displayed on the y-axis
       data: yData,
     },
   ]
@@ -38,7 +38,7 @@ export default function SimpleChart({ xData, yData }: Props) {
     },
     yaxis: {
       title: {
-        text: "Average popularity",
+        text: "Sum budget (USD) ",
       },
       labels: {
         formatter: function (val: any) {
