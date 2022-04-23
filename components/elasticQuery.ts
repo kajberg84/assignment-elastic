@@ -49,7 +49,7 @@ export function searchQuery() {
               range: {
                 release_date: {
                   format: "strict_date_optional_time",
-                  gte: "1922-04-22T08:24:54.456Z",
+                  gte: "1960-04-22T08:24:54.456Z",
                   lte: "2022-04-22T07:24:54.456Z",
                 },
               },
@@ -108,7 +108,7 @@ export function searchQuery2() {
               range: {
                 release_date: {
                   format: "strict_date_optional_time",
-                  gte: "1922-04-23T07:18:08.194Z",
+                  gte: "1960-04-23T07:18:08.194Z",
                   lte: "2022-04-23T06:18:08.194Z",
                 },
               },
