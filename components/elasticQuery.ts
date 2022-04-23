@@ -1,3 +1,9 @@
+/**
+ * ElasticQuery
+ *
+ * @export
+ * @return { object } - The query object for elastic search
+ */
 export function searchQuery() {
   return {
     index: "movies",

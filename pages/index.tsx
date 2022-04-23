@@ -1,25 +1,20 @@
-import type { GetServerSidePropsContext, NextPage } from "next"
 import Head from "next/head"
-import Image from "next/image"
-import { render } from "react-dom"
-import elastic from "./api/elastic"
-import searchElastic from "./api/elastic"
-import SampleLine from "../components/elasticChart"
 import React from "react"
+import SimpleChart from "../components/elasticChart"
 
 interface Props {
   data: []
 }
 
-//get serversideprops
+// Get serversideprops
 export async function getServerSideProps({ props }: any) {
   try {
     let xSampleData: any = []
     let ySampleData: any = []
-    console.log("get serverside props")
 
     const data = await elasticData()
 
+    // Itterate over the data and get the year and average popularity
     data.aggregations
       .filter((item: any) => item["1"].value)
       .forEach((item: any) => {
@@ -42,7 +37,11 @@ export async function getServerSideProps({ props }: any) {
     }
   }
 }
-
+/**
+ * Fetcing elastic data
+ *
+ * @return { object } - elastic data
+ */
 async function elasticData() {
   const url = `${process.env.NEXT_PUBLIC_HOST}/api/elastic`
 
@@ -51,7 +50,13 @@ async function elasticData() {
   const data = await response.json()
   return data
 }
-
+/**
+ * Render main page
+ *
+ * @export
+ * @param {{ data: any }} { data }
+ * @return {*}
+ */
 export default function Home({ data }: { data: any }) {
   const [xData, setXData] = React.useState(data.xSampleData)
   const [yData, setYData] = React.useState(data.ySampleData)
@@ -59,10 +64,10 @@ export default function Home({ data }: { data: any }) {
   return (
     <div style={{ height: "100vh" }}>
       <Head>
-        <title>Elastic assignment</title>
+        <title>Average popularity</title>
       </Head>
       <h1>Elastic assignment</h1>
-      <SampleLine xData={xData} yData={yData} />
+      <SimpleChart xData={xData} yData={yData} />
     </div>
   )
 }

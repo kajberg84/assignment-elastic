@@ -1,16 +1,13 @@
-import React from "react"
 import type { NextApiRequest, NextApiResponse } from "next"
 import { elasticSearchClient } from "../../components/elasticConnector"
 import { searchQuery } from "../../components/elasticQuery"
-
-// interface Aggre extends AggregationsAggregate {
-//   buckets: Object[]
-// }
-
+/**
+ * Function for getting the data from elastic search
+ *
+ * @return {*}
+ */
 async function searchElastic() {
   try {
-    console.log("inne i searchElastic")
-
     // Creating ES client
     const client = await elasticSearchClient()
 
@@ -37,7 +34,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log("inne i elastic handler")
   const aggregations = await searchElastic()
   res.status(200).json({ aggregations })
 }
