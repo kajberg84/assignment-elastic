@@ -34,7 +34,13 @@ export async function getServerSideProps({ props }: any) {
   } catch (error) {
     console.log(error)
     return {
-      notFound: true,
+      props: {
+        data: {
+          xSampleData: [],
+          ySampleData: [],
+        },
+      },
+      // notFound: true,
     }
   }
 }
