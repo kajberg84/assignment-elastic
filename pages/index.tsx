@@ -75,6 +75,11 @@ export default function Home({ data }: { data: any }) {
       </Head>
       <h1>Sum budget spent on movies 1925 - 2016</h1>
       <SimpleChart xData={xData} yData={yData} />
+      <div>
+        <button> action </button>
+        <button> drama </button>
+        <button> thriller </button>
+      </div>
     </div>
   )
 }
