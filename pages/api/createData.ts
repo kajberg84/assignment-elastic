@@ -48,30 +48,31 @@ import fs from "fs-extra"
  }
 
  async function createData() {
-  const client = await elasticSearchClient()
+console.log("Creating data")
 
-   await client.indices.delete({
-     index: "movies",
-   })
-   const data = await convertCSVtoArray("./data/movies.csv")
-   // Set indexes and id for all documents
-   await client.indices.create(
-     {
-       index: "movies",
-       operations: {
-         mappings: {
-           properties: {
-             id: { type: "integer" },
-             text: { type: "text" },
-             user: { type: "keyword" },
-             time: { type: "date" },
-           },
-         },
-       },
-     },
-     { ignore: [400] }
-   )
+const client = await elasticSearchClient()
 
+await client.indices.delete({
+  index: "movies",
+})
+const data = await convertCSVtoArray("./data/movies.csv")
+// Set indexes and id for all documents
+await client.indices.create(
+  {
+    index: "movies",
+    operations: {
+      mappings: {
+        properties: {
+          id: { type: "integer" },
+          text: { type: "text" },
+          user: { type: "keyword" },
+          time: { type: "date" },
+        },
+      },
+    },
+  },
+  { ignore: [400] }
+)
    // Create operations for bulk indexing
    const operations = data.flatMap((doc) => [
      { index: { _index: "movies" } },
