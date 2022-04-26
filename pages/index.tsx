@@ -44,7 +44,7 @@ export async function getServerSideProps({ props }: any) {
   }
 }
 /**
- * Fetcing elastic data
+ * Fetching elastic data
  *
  * @return { object } - elastic data
  */

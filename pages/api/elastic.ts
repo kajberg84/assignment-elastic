@@ -1,11 +1,8 @@
 //@ts-nocheck
 
-
 import type { NextApiRequest, NextApiResponse } from "next"
 import { elasticSearchClient } from "../../components/elasticConnector"
 import { searchQuery2 } from "../../components/elasticQuery"
-import fs from "fs-extra"
-
 
 
 async function searchElastic() {
