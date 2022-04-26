@@ -13,18 +13,6 @@ async function searchElastic() {
     // Creating ES client
     const client = await elasticSearchClient()
 
-    // try {
-    // await client.indices.delete({
-    //   index: "movies",
-    // })
-
-    // } catch (error) {
-    //   console.log("error")
-    // }
-
-    // const count = await client.count({ index: "movies" })
-    // console.log(count)
-
     // Creating search query
     const query: any = searchQuery2()
 
@@ -34,13 +22,11 @@ async function searchElastic() {
     const allBuckets: any = []
     const aggre: any = response.aggregations
 
-    // om jag vill se hur datan ser ut
-    // console.log(aggre)
-
+    // Iterating over all buckets and pushing to an array
     aggre.reldate_popu.buckets.forEach((item: any) => {
       allBuckets.push(item)
     })
-    // console.log(allBuckets)
+
     return allBuckets
   } catch (error: any) {
     console.log(error.message)

@@ -40,7 +40,6 @@ export async function getServerSideProps({ props }: any) {
           ySampleData: [],
         },
       },
-      // notFound: true,
     }
   }
 }
@@ -67,6 +66,10 @@ async function elasticData() {
 export default function Home({ data }: { data: any }) {
   const [xData, setXData] = React.useState(data.xSampleData)
   const [yData, setYData] = React.useState(data.ySampleData)
+
+  // TODO
+  // när jag klickar så ska useeffect ändra statet.
+  //Hämta en query från elasticsearch och lägg till det i state.
 
   return (
     <div style={{ height: "100vh" }}>
