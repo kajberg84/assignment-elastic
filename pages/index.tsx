@@ -66,7 +66,21 @@ async function elasticData() {
 export default function Home({ data }: { data: any }) {
   const [xData, setXData] = React.useState(data.xSampleData)
   const [yData, setYData] = React.useState(data.ySampleData)
+  const [label, setLabel] = React.useState("type")
 
+  function alertFunction(item: string) {
+    alert(`I have not implemented the buttons yet: ${item}`);
+  }
+
+  const buttonEnum: string[] = [
+    "Action",
+    "Drama",
+    "Comedy",
+    "Thriller",
+    "Horror",
+    "Sci-Fi",
+    "Adventure",
+  ]
   // TODO
   // när jag klickar så ska useeffect ändra statet.
   //Hämta en query från elasticsearch och lägg till det i state.
@@ -76,13 +90,27 @@ export default function Home({ data }: { data: any }) {
       <Head>
         <title>Elastic assignment</title>
       </Head>
-      <h1>Sum budget spent on movies 1925 - 2016</h1>
+      <h1>Sum budget spent on all movies 1960 - 2016</h1>
       <SimpleChart xData={xData} yData={yData} />
-      <div>
-        <button> action </button>
-        <button> drama </button>
-        <button> thriller </button>
+      <div className="mt20">
+  
+        {buttonEnum.map((item: string) => (
+          <button
+          className="button"
+            key={item}
+            onClick={() => {
+              alertFunction(item)
+            }}
+          >
+            {item}
+          </button>
+        ))}
       </div>
+      <p> </p>
     </div>
   )
 }
+        // <button className="button" role="button">
+        //   Action
+        // </button>
+
